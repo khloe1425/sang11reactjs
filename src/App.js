@@ -3,6 +3,9 @@ import './App.css';
 import ClassComponent from './Components/ClassComponent';
 import FunctionComponent from './Components/FunctionComponent';
 import HomeComponent from './BTComponent/HomeComponent';
+import DataBinding from './DataBinding/DataBinding';
+import HandleEvent from './DataBinding/HandleEvent';
+import DemoState from './DemoState/DemoState';
 
 
 //component chính
@@ -12,22 +15,12 @@ import HomeComponent from './BTComponent/HomeComponent';
 function App() {
   // gọi component
   return (
-    <div className='container homeStyle'>
-      {/* ctrl+ /: ghi chú */}
-      {/* <ClassComponent></ClassComponent> */}
-      {/* <ClassComponent /> */}
-      {/* <FunctionComponent/> */}
-      {/* .row: emmet react giúp tạo div có class row */}
-      {/* crush relationship management */}
-      {/* .col-3*4 */}
+    <div className='container'>
       {/* <div className="row">
-       
-          <ClassComponent />
-          <ClassComponent />
-          <ClassComponent />
-          <ClassComponent />
+        <DataBinding />
+        <HandleEvent />
       </div> */}
-      <HomeComponent/>
+      <DemoState/>
       
     </div>
   );
