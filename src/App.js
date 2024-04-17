@@ -6,6 +6,9 @@ import HomeComponent from './BTComponent/HomeComponent';
 import DataBinding from './DataBinding/DataBinding';
 import HandleEvent from './DataBinding/HandleEvent';
 import DemoState from './DemoState/DemoState';
+import DemoFontSize from './DemoState/DemoFontSize';
+import DemoCar from './DemoState/DemoCar';
+import DemoProduct from './DemoSanPham/DemoProduct';
 
 
 //component chính
@@ -20,7 +23,10 @@ function App() {
         <DataBinding />
         <HandleEvent />
       </div> */}
-      <DemoState/>
+      {/* <DemoState/> */}
+      {/* <DemoFontSize/> */}
+      {/* <DemoCar/> */}
+      <DemoProduct/>
       
     </div>
   );
