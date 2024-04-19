@@ -9,6 +9,7 @@ import DemoState from './DemoState/DemoState';
 import DemoFontSize from './DemoState/DemoFontSize';
 import DemoCar from './DemoState/DemoCar';
 import DemoProduct from './DemoSanPham/DemoProduct';
+import ExerciseCart from './BTGioHang/ExerciseCart';
 
 
 //component chính
@@ -26,7 +27,8 @@ function App() {
       {/* <DemoState/> */}
       {/* <DemoFontSize/> */}
       {/* <DemoCar/> */}
-      <DemoProduct/>
+      {/* <DemoProduct/> */}
+      <ExerciseCart/>
       
     </div>
   );
