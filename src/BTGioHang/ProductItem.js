@@ -2,8 +2,26 @@ import React, { Component } from 'react'
 
 export default class ProductItem extends Component {
   render() {
+    console.log(this.props.phone)
+    
+    let { phone, addToCart } = this.props
+    let { hinhAnh, tenSP, giaBan } = phone
+    
     return (
-      <div>ProductItem</div>
+      <div className="card">
+        <img src={hinhAnh} className="card-img-top" alt="..." />
+        <div className="card-body">
+          <h5 className="card-title">{tenSP}</h5>
+          <p className="card-text">{giaBan.toLocaleString()}</p>
+          <button className='btn btn-success' data-toggle="modal" data-target="#exampleModal"
+          
+          onClick={() => { 
+              addToCart(phone)
+           }}
+          
+          >Thêm giỏ hàng</button>
+        </div>
+      </div>
     )
   }
 }
