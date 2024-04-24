@@ -10,6 +10,7 @@ import DemoFontSize from './DemoState/DemoFontSize';
 import DemoCar from './DemoState/DemoCar';
 import DemoProduct from './DemoSanPham/DemoProduct';
 import ExerciseCart from './BTGioHang/ExerciseCart';
+import ExerciseCartRedux from './BTGioHangRedux/ExerciseCartRedux';
 
 
 //component chính
@@ -20,15 +21,8 @@ function App() {
   // gọi component
   return (
     <div className='container'>
-      {/* <div className="row">
-        <DataBinding />
-        <HandleEvent />
-      </div> */}
-      {/* <DemoState/> */}
-      {/* <DemoFontSize/> */}
-      {/* <DemoCar/> */}
-      {/* <DemoProduct/> */}
-      <ExerciseCart/>
+      
+      <ExerciseCartRedux/>
       
     </div>
   );

@@ -4,7 +4,7 @@ export default class Cart extends Component {
 
 
   renderCart = () => {
-    let { gioHang } = this.props
+    let { gioHang, deleteCart, changeSL } = this.props
     return gioHang.map((cartItem) => {
       let { maSP, hinhAnh, giaBan, soLuong, tenSP } = cartItem
       return <tr key={`cart${maSP}`}>
@@ -13,15 +13,25 @@ export default class Cart extends Component {
           <img style={{ width: "50px" }} src={hinhAnh} alt="" />
         </td>
         <td>{tenSP}</td>
+
         <td>
-          <button className='btn btn-success'>-</button>
+          <button onClick={() => {
+            changeSL(maSP, -1)
+          }} className='btn btn-success'>-</button>
           <span> {soLuong} </span>
-          <button className='btn btn-success'>+</button>
+          <button onClick={() => {
+            changeSL(maSP, 1)
+          }} className='btn btn-success'>+</button>
         </td>
+
         <td>{giaBan.toLocaleString()}</td>
         <td>{(giaBan * soLuong).toLocaleString()}</td>
         <td>
-          <button className='btn btn-danger'>Xóa</button>
+          <button onClick={() => {
+            deleteCart(maSP)
+          }}
+
+            className='btn btn-danger'>Xóa</button>
         </td>
       </tr>
     })
@@ -58,6 +68,8 @@ export default class Cart extends Component {
                 </tbody>
               </table>
 
+              {/* <div>Tổng số tiền: {this.props.sumPrice().toLocaleString()} </div> */}
+              <div>Tổng số tiền: {this.props.sumPrice()} </div>
 
             </div>
             <div className="modal-footer">

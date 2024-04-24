@@ -35,7 +35,7 @@ export default class ExerciseCart extends Component {
         //     return cartItem.maSP === phoneClick.maSP
         // })
         let cartFind = this.state.gioHang.find(cartItem => cartItem.maSP === phoneClick.maSP)
-        
+
 
         if (cartFind) {
             //có sản phẩm => tăng số lượng
@@ -55,6 +55,86 @@ export default class ExerciseCart extends Component {
         this.setState({
             gioHang: gioHangUpdate
         })
+
+    }
+
+    //input: mã sản phẩm cần xóa
+    deleteCart = (maSPClick) => {
+        console.log(maSPClick)
+        //C1: tìm sp cần xóa (find, findIndex)
+        // => splice => xóa dựa vào vị trí
+
+        // [{ maSP: 1 }, { maSP: 2 }, { maSP: 3 }]
+        // C2: filter() return mảng mới : điều kiện lọc mảng các sản phẩm giỏ hàng không chứa maSP cần xóa
+        // let gioHangMoi = this.state.gioHang.filter((cartItem) => { 
+        //*     // return cartItem.maSP !== 3
+        //     return cartItem.maSP !== maSPClick  //[{ maSP: 1 }, { maSP: 2 }]
+        //  })
+
+        let gioHangMoi = this.state.gioHang.filter(cartItem => cartItem.maSP !== maSPClick)
+
+        //TODO: gọi setState
+        this.setState({
+            gioHang: gioHangMoi
+        })
+
+    }
+
+    // sl + 1, sl - 1
+    //soLuong => tăng +1, giảm -1; thay đổi sl => cập nhật sản phẩm
+    // input: mã sản phẩm cần tăng sl, số lượng tăng hoặc giảm
+    changeSL = (maSPClick, sl) => {
+        console.log(maSPClick, sl)
+        // Tìm sp cần đổi số lượng => cập nhật thuộc tính số lượng
+        //find() => return obj
+        // let gioHang = this.state.gioHang // biến có địa chỉ mới
+
+        let { gioHang } = this.state
+        let findItem = gioHang.find((cartItem) => {
+            return cartItem.maSP == maSPClick
+        })
+
+        if (findItem) {
+            //tìm thấy
+            // soLuong += 1; soLuong += -1 (soLuong -1 )
+            findItem.soLuong += sl
+            if (findItem.soLuong < 1) {
+                alert("Số lượng không được dưới 1")
+                // sl= 0 - -1 => 0 + 1 => luôn về 1
+                findItem.soLuong -= sl
+            }
+        }
+
+        //TODO: setState
+        this.setState({
+            gioHang: gioHang
+        })
+
+    }
+
+
+    sumSL = () => {
+        let { gioHang } = this.state
+        //reduce
+        let totalSL = gioHang.reduce((total, cartItem, index) => {
+            return total += cartItem.soLuong
+        }, 0)
+
+        return totalSL
+    }
+
+    //Khai báo hàm tổng số tiền
+    sumPrice = () => {
+        let { gioHang } = this.state
+        //reduce
+        let totalGiaBan = gioHang.reduce((total, cartItem, index) => {
+            return total += cartItem.soLuong * cartItem.giaBan
+        }, 0)
+        
+        return totalGiaBan.toLocaleString()
+
+        // C2
+        return this.state.gioHang.reduce((total, cartItem, index) => total += cartItem.soLuong * cartItem.giaBan, 0)
 
     }
 
@@ -91,7 +171,7 @@ export default class ExerciseCart extends Component {
                             </li>
                         </ul>
                         <div className='cartGroup' data-toggle="modal" data-target="#exampleModal">
-                            Giỏ hàng (0)
+                            Giỏ hàng ({this.sumSL()})
                         </div>
                     </div>
                 </nav>
@@ -102,7 +182,7 @@ export default class ExerciseCart extends Component {
 
                 </div>
 
-                <Cart gioHang={this.state.gioHang} />
+                <Cart sumPrice={this.sumPrice} changeSL={this.changeSL} deleteCart={this.deleteCart} gioHang={this.state.gioHang} />
 
 
 
@@ -110,3 +190,29 @@ export default class ExerciseCart extends Component {
         )
     }
 }
+
+
+
+
+// function tinhTong(){
+//     let total = 0
+
+//     for ( let cartItem of gioHang) {
+//         total += cartItem.soLuong
+//     }
+
+//     return total
+// }
+
+// function tinhTongTien() {
+//     let total = 0
+
+//     for (let cartItem of gioHang) {
+//         total += cartItem.soLuong * cartItem.giaBan
+//     }
+
+//     return total
+// }
+
+
+
