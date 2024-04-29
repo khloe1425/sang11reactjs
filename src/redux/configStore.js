@@ -8,6 +8,21 @@ import { combineReducers, createStore } from "redux";
 //*B1: khai báo giá trị ban đầu cho state
 const gioHang = []
 
+//* dữ liệu cần lưu:
+// mảng đối tượng xuc xac: [ {hinhAnh:"./img/game/1.png", diem:1 } ]
+// datCuoc: true (tài), false (xỉu)
+// soBanThang: 0, tongSoBanChoi: 0
+const gameState = {
+    mangXucXac: [
+        { hinhAnh: "./img/game/1.png", diem: 1 },
+        { hinhAnh: "./img/game/1.png", diem: 1 },
+        { hinhAnh: "./img/game/1.png", diem: 1 }
+    ],
+    datCuoc: true,
+    soBanThang: 0,
+    tongSoBanChoi: 0
+}
+
 const rootReducer = combineReducers({
     //reducers: các state sẽ được lưu ở đây
     //*B2: Tạo reducer, phương thức chứa state (nhận vào tham số state) 
@@ -63,6 +78,9 @@ const rootReducer = combineReducers({
         // trả về state
         // return state;// gioHang
     },
+    gameReducer: (state = gameState, action) => {
+        return state;
+    }
 
     //mỗi reducer giống 1 tính năng của ứng dụng
     // xemChiTietReducer: ()=>{
@@ -70,7 +88,7 @@ const rootReducer = combineReducers({
 
 })
 
-export const store = createStore(rootReducer)
+export const store = createStore(rootReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
 
 
 // class MyClass{
