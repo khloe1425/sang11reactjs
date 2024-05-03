@@ -10,7 +10,13 @@ class GameResult extends Component {
                 <p>BẠN CHỌN:  <span className='text-danger'>{datCuoc==true ? "TÀI": "XỈU"}</span></p>
                 <p>SỐ BÀN THẮNG:  <span className='text-success'>{soBanThang}</span></p>
                 <p>TỔNG SỐ BÀN CHƠI:  <span className='text-primary'>{tongSoBanChoi}</span></p>
-                <button className='btn btn-success'>PLAY GAME</button>
+                <button onClick={() => { 
+                    let action ={
+                        type:"PLAY_GAME"
+                    }
+                    this.props.dispatch(action)
+
+                 }} className='btn btn-success'>PLAY GAME</button>
             </div>
         )
     }
